@@ -12,8 +12,9 @@ class MyApp extends StatelessWidget {
       title: 'QR Reader App',
       initialRoute: 'home',
       routes: {
-        'home' : (BuildContext context) => HomePage(),
+        'home': (BuildContext context) => HomePage(),
       },
+      theme: ThemeData(primaryColor: Colors.deepPurple),
     );
   }
 }
