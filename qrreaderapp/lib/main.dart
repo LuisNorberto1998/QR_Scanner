@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:qrreaderapp/src/pages/home_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -8,16 +10,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'QR Reader App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('QR Reader APP'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Lector de codigos QR'),
-          ),
-        ),
-      ),
+      initialRoute: 'home',
+      routes: {
+        'home' : (BuildContext context) => HomePage(),
+      },
     );
   }
 }
