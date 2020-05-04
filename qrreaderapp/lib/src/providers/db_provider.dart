@@ -1,8 +1,11 @@
 import 'dart:io';
 
-import 'package:qrreaderapp/src/models/scan_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'package:qrreaderapp/src/models/scan_model.dart';
+//Export expone el modelo a quien importe DBProvider
+export 'package:qrreaderapp/src/models/scan_model.dart';
 //Importación de path (join)
 import 'package:path/path.dart';
 
@@ -16,7 +19,7 @@ class DBProvider {
   //Obtener bdb
   Future<Database> get database async {
     //Si es nula
-    if (database != null) return _database;
+    if (_database != null) return _database;
     //Se crea una nueva base de datos
     _database = await initDB();
     return _database;
@@ -36,10 +39,11 @@ class DBProvider {
         version: 1, //
         onOpen: (db) {}, onCreate: (Database db, int version) async {
       //Inicialización de la db
-      await db.execute('CREATE TABLE Scans('
-          'id INTEGER PRIMARY KEY, '
-          'tipo TEXT, '
-          'valor TEXT '
+      await db.execute(
+          'CREATE TABLE Scans('
+          'id INTEGER PRIMARY KEY,'
+          'tipo TEXT,'
+          'valor TEXT'
           ')');
     });
   }
@@ -62,10 +66,8 @@ class DBProvider {
     final db = await database;
 
     //Inserccion de los valores
-    final res = await db.insert(
-        'Scans',
-        nuevoScan
-            .toJson()); //toJson transforma el modelo y regresa un mapa que tiene String dynamic que se puede enviar hacia el insert
+    final res = await db.insert('Scans', nuevoScan.toJson());
+    //toJson transforma el modelo y regresa un mapa que tiene String dynamic que se puede enviar hacia el insert
     //Se regresa el resultado.
     return res;
   }

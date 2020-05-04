@@ -1,0 +1,6 @@
+class ScansBloc{
+
+
+
+  
+}

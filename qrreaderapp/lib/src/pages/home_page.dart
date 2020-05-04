@@ -4,6 +4,7 @@ import 'package:barcode_scan/barcode_scan.dart';
 
 import 'package:qrreaderapp/src/pages/direcciones_page.dart';
 import 'package:qrreaderapp/src/pages/mapas_page.dart';
+import 'package:qrreaderapp/src/providers/db_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -38,22 +39,26 @@ class _HomePageState extends State<HomePage> {
     //https://turispotweb.herokuapp.com/
     //geo: 40.73255860802501, -73.89333143671877
 
-    dynamic futurestring = '';
+    dynamic futurestring = 'https://turispotweb.herokuapp.com/';
+
     // try {
     //   futurestring = await BarcodeScanner.scan();
     // } catch (e) {
     //   futurestring = e.toString();
     // }
 
-    // if (futurestring != null) {
-    //   print('Tenemos información');
-    //   print(futurestring
-    //       .type); // The futurestring type (barcode, cancelled, failed)
-    //   print(futurestring.rawContent); // The barcode content
-    //   print(futurestring.format); // The barcode format (as enum)
-    //   print(futurestring
-    //       .formatNote); // If a unknown format was scanned this field contains a note
-    // }
+    if (futurestring != null) {
+      //Grabar la información del escaneo
+      final scan = ScanModel(valor: futurestring);
+      DBProvider.db.nuevoScan(scan);
+
+      // print(futurestring
+      //     .type); // The futurestring type (barcode, cancelled, failed)
+      // print(futurestring.rawContent); // The barcode content
+      // print(futurestring.format); // The barcode format (as enum)
+      // print(futurestring
+      //     .formatNote); // If a unknown format was scanned this field contains a note
+    }
   }
 
   Widget _crearBottomNavigationBar() {
@@ -67,7 +72,7 @@ class _HomePageState extends State<HomePage> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.map), title: Text('Mapas')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.brightness_5), title: Text('Mapas')),
+              icon: Icon(Icons.brightness_5), title: Text('Direcciones')),
         ]);
   }
 

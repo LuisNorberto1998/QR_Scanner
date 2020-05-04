@@ -8,6 +8,7 @@ class ScanModel {
     this.tipo,
     this.valor,
   }) {
+    //Si el valor tiene HTTP se asigna el tipo
     if (valor.contains('http')) {
       this.tipo = ' http';
     } else {
