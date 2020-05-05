@@ -29,7 +29,7 @@ class MapaPage extends StatelessWidget {
         center: scan.getLatLng(),
         zoom: 10,
       ),
-      layers: [_crearMapa()],
+      layers: [_crearMapa(), _crearMarcadores(scan)],
     );
   }
 
@@ -46,5 +46,21 @@ class MapaPage extends StatelessWidget {
           // 'id': 'mapbox.outdoors'
           'id': 'mapbox.satellite'
         });
+  }
+
+  _crearMarcadores(ScanModel scan) {
+    return MarkerLayerOptions(markers: <Marker>[
+      Marker(
+          width: 100,
+          height: 100,
+          point: scan.getLatLng(),
+          builder: (context) => Container(
+                child: Icon(
+                  Icons.location_on,
+                  size: 120.0,
+                  color: Theme.of(context).primaryColor,
+                ),
+              )),
+    ]);
   }
 }
