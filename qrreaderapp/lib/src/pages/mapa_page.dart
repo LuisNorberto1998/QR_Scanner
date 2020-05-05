@@ -40,7 +40,11 @@ class MapaPage extends StatelessWidget {
         additionalOptions: {
           'accessToken':
               'pk.eyJ1Ijoibm9yYmVydG9wcjE5OTgiLCJhIjoiY2s5dDcxbmt6MWRvazNlbzFzNzExMzJiciJ9.HX8k6Td8aIDL3luZ9UydYQ',
-          'id': 'mapbox.streets'
+          // 'id': 'mapbox.streets'
+          // 'id': 'mapbox.dark'
+          // 'id': 'mapbox.light'
+          // 'id': 'mapbox.outdoors'
+          'id': 'mapbox.satellite'
         });
   }
 }
