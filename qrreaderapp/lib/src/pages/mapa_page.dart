@@ -3,8 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:qrreaderapp/src/models/scan_model.dart';
 
-class MapaPage extends StatelessWidget {
-  MapController map = new MapController();
+class MapaPage extends StatefulWidget {
+  @override
+  _MapaPageState createState() => _MapaPageState();
+}
+
+class _MapaPageState extends State<MapaPage> {
+  final MapController map = new MapController();
+
+  String tipoMapa = 'streets';
+
   @override
   Widget build(BuildContext context) {
     final ScanModel scan = ModalRoute.of(context).settings.arguments;
@@ -23,6 +31,7 @@ class MapaPage extends StatelessWidget {
       body: Center(
         child: _crearFlutterMap(scan),
       ),
+      floatingActionButton: _crearBotonFlotante(context),
     );
   }
 
@@ -48,7 +57,7 @@ class MapaPage extends StatelessWidget {
           // 'id': 'mapbox.dark'
           // 'id': 'mapbox.light'
           // 'id': 'mapbox.outdoors'
-          'id': 'mapbox.satellite'
+          'id': 'mapbox.$tipoMapa'
         });
   }
 
@@ -66,5 +75,33 @@ class MapaPage extends StatelessWidget {
                 ),
               )),
     ]);
+  }
+
+  Widget _crearBotonFlotante(BuildContext context) {
+    List<String> lista = ['streets', 'dark', 'light', 'outdoors', 'satellite'];
+
+    return FloatingActionButton(
+      onPressed: () {
+        if (tipoMapa == 'streets') {
+          // tipoMapa = lista[1];
+          tipoMapa = 'dark';
+        } else if (tipoMapa == 'dark') {
+          // tipoMapa = lista[2];
+          tipoMapa = 'light';
+        } else if (tipoMapa == 'light') {
+          // tipoMapa = lista[3];
+          tipoMapa = 'outdoors';
+        } else if (tipoMapa == 'outdoors') {
+          // tipoMapa = lista[4];
+          tipoMapa = 'satellite';
+        } else {
+          // tipoMapa = lista[0];
+          tipoMapa = 'dark';
+        }
+        setState(() {});
+      },
+      child: Icon(Icons.repeat),
+      backgroundColor: Theme.of(context).primaryColor,
+    );
   }
 }
