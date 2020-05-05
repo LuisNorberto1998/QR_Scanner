@@ -45,22 +45,23 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _scanQR(BuildContext context) async {
-    dynamic futurestring;
-    // dynamic futurestring = 'geo:20.1095204,-98.4071628';
+    dynamic futureString;
 
     try {
-      futurestring = await BarcodeScanner.scan();
-    } catch (e) {
-      futurestring = e.toString();
+      // futureString = await new QRCodeReader().scan();
+      futureString = await BarcodeScanner.scan();
+    } catch(e) {
+      futureString = e.toString();
     }
 
-    if (futurestring != null) {
-      //Grabar la información del escaneo
-      final scan = ScanModel(valor: futurestring);
-      scansBloc.agregarScan(scan);
-      if (Platform.isIOS || Platform.isAndroid) {
-        Future.delayed(Duration(milliseconds: 750), () {
-          utils.abrirScan(scan, context);
+    if ( futureString != null ) {
+      
+      final scan = ScanModel( valor: futureString.rawContent);
+      scansBloc.agregarScan(scan);      
+
+      if ( Platform.isIOS ) {
+        Future.delayed( Duration( milliseconds: 750 ), () {
+          utils.abrirScan(scan, context);    
         });
       } else {
         utils.abrirScan(scan, context);
