@@ -83,20 +83,15 @@ class _MapaPageState extends State<MapaPage> {
     return FloatingActionButton(
       onPressed: () {
         if (tipoMapa == 'streets') {
-          // tipoMapa = lista[1];
-          tipoMapa = 'dark';
+          tipoMapa = lista[1];
         } else if (tipoMapa == 'dark') {
-          // tipoMapa = lista[2];
-          tipoMapa = 'light';
+          tipoMapa = lista[2];
         } else if (tipoMapa == 'light') {
-          // tipoMapa = lista[3];
-          tipoMapa = 'outdoors';
+          tipoMapa = lista[3];
         } else if (tipoMapa == 'outdoors') {
-          // tipoMapa = lista[4];
-          tipoMapa = 'satellite';
+          tipoMapa = lista[4];
         } else {
-          // tipoMapa = lista[0];
-          tipoMapa = 'dark';
+          tipoMapa = lista[0];
         }
         setState(() {});
       },

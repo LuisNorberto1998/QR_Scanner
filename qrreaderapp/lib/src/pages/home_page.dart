@@ -45,18 +45,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _scanQR(BuildContext context) async {
-    //https://turispotweb.herokuapp.com/
-    //geo: 40.73255860802501, -73.89333143671877
+    dynamic futurestring;
+    // dynamic futurestring = 'geo:20.1095204,-98.4071628';
 
-    // dynamic futurestring = 'https://turispotweb.herokuapp.com/';
-    // dynamic futurestring = 'https://www.google.com/';
-    dynamic futurestring = 'geo:20.1095204,-98.4071628';
-
-    // try {
-    //   futurestring = await BarcodeScanner.scan();
-    // } catch (e) {
-    //   futurestring = e.toString();
-    // }
+    try {
+      futurestring = await BarcodeScanner.scan();
+    } catch (e) {
+      futurestring = e.toString();
+    }
 
     if (futurestring != null) {
       //Grabar la información del escaneo
@@ -92,7 +88,7 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return MapasPage();
       case 1:
-        return DireccionesPage();
+        return DirecionesPage();
       default:
         return MapasPage();
     }
