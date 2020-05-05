@@ -1,3 +1,5 @@
+
+
 class ScanModel {
   int id;
   String tipo;
@@ -10,7 +12,7 @@ class ScanModel {
   }) {
     //Si el valor tiene HTTP se asigna el tipo
     if (valor.contains('http')) {
-      this.tipo = ' http';
+      this.tipo = 'http';
     } else {
       this.tipo = 'geo';
     }
