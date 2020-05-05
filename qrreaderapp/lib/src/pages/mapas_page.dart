@@ -29,7 +29,7 @@ class MapasPage extends StatelessWidget {
               color: Colors.red,
             ),
             child: ListTile(
-              onTap: () => utils.abrirScan(scans[i]),
+              onTap: () => utils.abrirScan(scans[i], context),
               leading: Icon(
                 Icons.cloud,
                 color: Theme.of(context).primaryColor,

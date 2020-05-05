@@ -38,18 +38,19 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
-        onPressed: _scanQR,
+        onPressed: () => _scanQR(context),
         child: Icon(Icons.filter_center_focus),
       ),
     );
   }
 
-  void _scanQR() async {
+  void _scanQR(BuildContext context) async {
     //https://turispotweb.herokuapp.com/
     //geo: 40.73255860802501, -73.89333143671877
 
     // dynamic futurestring = 'https://turispotweb.herokuapp.com/';
-    dynamic futurestring = 'https://www.google.com/';
+    // dynamic futurestring = 'https://www.google.com/';
+    dynamic futurestring = 'geo:40.73255860802501,-73.89333143671877';
 
     // try {
     //   futurestring = await BarcodeScanner.scan();
@@ -63,10 +64,10 @@ class _HomePageState extends State<HomePage> {
       scansBloc.agregarScan(scan);
       if (Platform.isIOS || Platform.isAndroid) {
         Future.delayed(Duration(milliseconds: 750), () {
-          utils.abrirScan(scan);
+          utils.abrirScan(scan, context);
         });
       } else {
-        utils.abrirScan(scan);
+        utils.abrirScan(scan, context);
       }
     }
   }
